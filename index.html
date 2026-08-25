@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ateneo Jurídico Territorial — Chubut, Patagonia</title>
+<meta name="description" content="Ateneo Jurídico Territorial: grupo multidisciplinario de abogados, escribanos y agrimensores en Chubut, Patagonia Argentina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16324F;
+    --navy-deep:#0E2338;
+    --ocre:#B5722A;
+    --ocre-light:#D69A54;
+    --cream:#F7F4EC;
+    --paper:#FBFAF7;
+    --ink:#26313D;
+    --ink-soft:#5B6B78;
+    --line: rgba(22,50,79,0.14);
+    --line-strong: rgba(22,50,79,0.28);
+    --radius: 2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    color:var(--navy-deep);
+    margin:0;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+  }
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media(max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- Graticule signature pattern ---------- */
+  .graticule{
+    position:absolute;
+    inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 47px, var(--line) 47px, var(--line) 48px),
+      repeating-linear-gradient(90deg, transparent, transparent 71px, var(--line) 71px, var(--line) 72px);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 30%, black 10%, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 70% at 50% 30%, black 10%, transparent 75%);
+    pointer-events:none;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(251,250,247,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+  }
+  .brand img{ width:36px; height:36px; object-fit:contain; }
+  .brand-text{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--navy-deep);
+    line-height:1.15;
+  }
+  .brand-text span{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    font-weight:400;
+    letter-spacing:0.12em;
+    color:var(--ocre);
+    margin-top:2px;
+  }
+  nav.links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  nav.links a{
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    color:var(--navy);
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav.links a::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:1px;
+    background:var(--ocre);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+  }
+  nav.links a:hover::after{ transform:scaleX(1); }
+  .nav-toggle{ display:none; }
+
+  @media(max-width:800px){
+    nav.links{
+      position:fixed;
+      top:69px; left:0; right:0;
+      background:var(--paper);
+      flex-direction:column;
+      gap:0;
+      border-bottom:1px solid var(--line);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    nav.links.open{ max-height:320px; }
+    nav.links a{
+      padding:16px 20px;
+      border-top:1px solid var(--line);
+      width:100%;
+    }
+    .nav-toggle{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      background:none;
+      border:none;
+      cursor:pointer;
+      padding:8px;
+    }
+    .nav-toggle span{
+      width:22px; height:2px; background:var(--navy-deep);
+    }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:96px 0 80px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    color:var(--ocre);
+    text-transform:uppercase;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--ocre);
+  }
+  .hero h1{
+    font-size:clamp(34px, 5vw, 56px);
+    line-height:1.05;
+    max-width:12ch;
+  }
+  .hero p.lede{
+    margin-top:20px;
+    max-width:46ch;
+    font-size:17px;
+    color:var(--ink-soft);
+  }
+  .coord-stamp{
+    margin-top:28px;
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--navy);
+    border:1px solid var(--line-strong);
+    padding:8px 14px;
+    letter-spacing:0.04em;
+  }
+  .cta-row{
+    margin-top:36px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 24px;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    border:1px solid var(--navy-deep);
+    transition:background .2s ease, color .2s ease;
+  }
+  .btn-solid{
+    background:var(--navy-deep);
+    color:var(--paper);
+  }
+  .btn-solid:hover{ background:var(--ocre); border-color:var(--ocre); }
+  .btn-ghost{
+    color:var(--navy-deep);
+  }
+  .btn-ghost:hover{ background:var(--navy-deep); color:var(--paper); }
+
+  .hero-logo{
+    width:220px;
+    height:220px;
+    object-fit:contain;
+    filter:drop-shadow(0 12px 24px rgba(22,50,79,0.15));
+  }
+  @media(max-width:800px){
+    .hero-inner{ grid-template-columns:1fr; text-align:left; }
+    .hero-logo{ width:130px; height:130px; order:-1; margin-bottom:8px;}
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section{
+    padding:88px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:48px;
+    flex-wrap:wrap;
+  }
+  .section-head .eyebrow{ margin-bottom:10px; }
+  .section-head h2{ font-size:clamp(26px, 3vw, 36px); }
+  .section-head p{
+    max-width:42ch;
+    color:var(--ink-soft);
+    font-size:15px;
+    margin-top:10px;
+  }
+
+  /* ---------- Nosotros: pilares ---------- */
+  .pilares{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .pilar{
+    background:var(--paper);
+    padding:36px 30px;
+  }
+  .pilar .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ocre);
+    letter-spacing:0.08em;
+  }
+  .pilar h3{
+    font-size:21px;
+    margin-top:14px;
+    margin-bottom:12px;
+  }
+  .pilar p{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    margin:0;
+  }
+  @media(max-width:800px){
+    .pilares{ grid-template-columns:1fr; }
+  }
+
+  .intro-text{
+    max-width:68ch;
+    font-size:17px;
+    color:var(--ink);
+    margin-bottom:56px;
+  }
+  .intro-text strong{ color:var(--navy-deep); }
+
+  /* team */
+  .team{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:28px;
+    margin-top:56px;
+  }
+  .member{
+    border-top:2px solid var(--navy-deep);
+    padding-top:16px;
+  }
+  .member .avatar{
+    width:100%;
+    aspect-ratio:1;
+    background:linear-gradient(155deg, var(--cream), #EDE6D8);
+    border:1px solid var(--line);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces', serif;
+    font-size:28px;
+    color:var(--navy);
+  }
+  .member h4{ font-size:16px; }
+  .member .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ocre);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin:6px 0 10px;
+  }
+  .member p{ font-size:13.5px; color:var(--ink-soft); margin:0; }
+  @media(max-width:800px){ .team{ grid-template-columns:1fr 1fr; } }
+  @media(max-width:480px){ .team{ grid-template-columns:1fr; } }
+
+  /* ---------- Publicaciones ---------- */
+  .filters{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .filter-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    padding:7px 14px;
+    border:1px solid var(--line-strong);
+    color:var(--navy);
+    text-transform:uppercase;
+    background:none;
+    cursor:default;
+  }
+  .filter-tag.active{
+    background:var(--navy-deep);
+    color:var(--paper);
+    border-color:var(--navy-deep);
+  }
+  .articles{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:40px;
+  }
+  .article{
+    background:var(--paper);
+    padding:30px 26px;
+    display:flex;
+    flex-direction:column;
+    text-decoration:none;
+  }
+  .article .meta{
+    display:flex;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ocre);
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .article h3{
+    font-size:19px;
+    line-height:1.25;
+    margin-bottom:12px;
+  }
+  .article p{
+    font-size:14px;
+    color:var(--ink-soft);
+    flex-grow:1;
+    margin:0 0 18px;
+  }
+  .article .read{
+    font-size:13px;
+    font-weight:500;
+    color:var(--navy-deep);
+    border-top:1px solid var(--line);
+    padding-top:14px;
+  }
+  .article:hover h3{ color:var(--ocre); }
+  @media(max-width:900px){ .articles{ grid-template-columns:1fr 1fr; } }
+  @media(max-width:600px){ .articles{ grid-template-columns:1fr; } }
+
+  /* ---------- Recursos / Bibliografía ---------- */
+  .resources{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:64px;
+  }
+  .res-col h3{
+    font-size:18px;
+    margin-bottom:20px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .res-list{ list-style:none; margin:0; padding:0; }
+  .res-list li{
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    gap:14px;
+    font-size:14.5px;
+  }
+  .res-list li:last-child{ border-bottom:none; }
+  .res-list .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--ocre);
+    white-space:nowrap;
+    padding-top:2px;
+  }
+  .res-list a{ text-decoration:none; color:var(--navy-deep); }
+  .res-list a:hover{ color:var(--ocre); }
+  .res-list .author{ display:block; color:var(--ink-soft); font-size:12.5px; margin-top:2px; }
+  @media(max-width:800px){ .resources{ grid-template-columns:1fr; gap:44px; } }
+
+  /* ---------- Contacto ---------- */
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:start;
+  }
+  .contact-block .coord-stamp{ margin-top:8px; }
+  .contact-cards{ display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .contact-card{
+    background:var(--paper);
+    padding:24px 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-decoration:none;
+    gap:16px;
+  }
+  .contact-card .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ocre);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    display:block;
+    margin-bottom:6px;
+  }
+  .contact-card .value{
+    font-family:'Fraunces', serif;
+    font-size:18px;
+    color:var(--navy-deep);
+  }
+  .contact-card .arrow{ font-size:20px; color:var(--navy); transition:transform .2s ease; }
+  .contact-card:hover .arrow{ transform:translateX(6px); color:var(--ocre); }
+  @media(max-width:800px){ .contact-wrap{ grid-template-columns:1fr; gap:40px; } }
+
+  /* ---------- Footer ---------- */
+  footer{ padding:40px 0; }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-inner .brand img{ width:26px; height:26px; }
+  .footer-inner .brand-text{ font-size:13px; }
+  .footer-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="brand">
+      <img src="logo.jpg" alt="Ateneo Jurídico Territorial">
+      <span class="brand-text">ATENEO JURÍDICO<br>TERRITORIAL<span>CHUBUT · PATAGONIA</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="links" id="navLinks">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#publicaciones">Publicaciones</a></li>
+      <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio" style="border-bottom:1px solid var(--line);">
+  <div class="graticule"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">Grupo multidisciplinario</span>
+      <h1>Derecho, escribanía y territorio, en un mismo estudio.</h1>
+      <p class="lede">Un espacio de trabajo y reflexión conjunta entre abogados, escribanos y agrimensores, dedicado a las cuestiones jurídicas y territoriales de la Patagonia.</p>
+      <div class="coord-stamp">43°15′ S&nbsp;&nbsp;65°18′ O — CHUBUT, ARGENTINA</div>
+      <div class="cta-row">
+        <a href="#nosotros" class="btn btn-solid">Conocé al grupo</a>
+        <a href="#publicaciones" class="btn btn-ghost">Ver publicaciones</a>
+      </div>
+    </div>
+    <img src="logo.jpg" alt="" class="hero-logo">
+  </div>
+</section>
+
+<!-- ================= NOSOTROS ================= -->
+<section id="nosotros">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Tres disciplinas, una misma lectura del territorio.</h2>
+      </div>
+    </div>
+
+    <p class="intro-text reveal">
+      El <strong>Ateneo Jurídico Territorial</strong> reúne a profesionales del derecho, la escribanía y la agrimensura para abordar de forma conjunta los conflictos y proyectos donde lo legal y lo territorial se cruzan: dominio, límites, catastro, ordenamiento territorial, contratos y todo aquello que exige mirada jurídica y mirada técnica al mismo tiempo. [Editar: texto institucional definitivo del grupo.]
+    </p>
+
+    <div class="pilares reveal">
+      <div class="pilar">
+        <span class="num mono">01 — DERECHO</span>
+        <h3>Abogados</h3>
+        <p>Asesoramiento y patrocinio en materia civil, contractual y territorial. [Placeholder: detallar áreas de práctica del estudio.]</p>
+      </div>
+      <div class="pilar">
+        <span class="num mono">02 — ESCRIBANÍA</span>
+        <h3>Escribanos</h3>
+        <p>Instrumentación pública, escrituración y seguridad jurídica de los actos. [Placeholder: detallar servicios notariales ofrecidos.]</p>
+      </div>
+      <div class="pilar">
+        <span class="num mono">03 — AGRIMENSURA</span>
+        <h3>Agrimensores</h3>
+        <p>Mensura, deslinde y relevamiento territorial con base técnica y catastral. [Placeholder: detallar servicios de agrimensura.]</p>
+      </div>
+    </div>
+
+    <div class="team reveal">
+      <div class="member">
+        <div class="avatar">N.N.</div>
+        <h4>Nombre Apellido</h4>
+        <span class="role">Abogado/a</span>
+        <p>Breve reseña profesional. [Editar.]</p>
+      </div>
+      <div class="member">
+        <div class="avatar">N.N.</div>
+        <h4>Nombre Apellido</h4>
+        <span class="role">Escribano/a</span>
+        <p>Breve reseña profesional. [Editar.]</p>
+      </div>
+      <div class="member">
+        <div class="avatar">N.N.</div>
+        <h4>Nombre Apellido</h4>
+        <span class="role">Agrimensor/a</span>
+        <p>Breve reseña profesional. [Editar.]</p>
+      </div>
+      <div class="member">
+        <div class="avatar">N.N.</div>
+        <h4>Nombre Apellido</h4>
+        <span class="role">Agrimensor/a</span>
+        <p>Breve reseña profesional. [Editar.]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLICACIONES ================= -->
+<section id="publicaciones">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Producción del ateneo</span>
+        <h2>Publicaciones</h2>
+        <p>Artículos, conclusiones de reuniones del grupo y dictámenes sobre casos de interés jurídico-territorial.</p>
+      </div>
+      <div class="filters">
+        <span class="filter-tag active">Todos</span>
+        <span class="filter-tag">Artículos</span>
+        <span class="filter-tag">Conclusiones</span>
+        <span class="filter-tag">Dictámenes</span>
+      </div>
+    </div>
+
+    <div class="articles reveal">
+      <a href="#" class="article">
+        <div class="meta"><span>Artículo</span><span>Ago. 2026</span></div>
+        <h3>Título del artículo [editar]</h3>
+        <p>Copete o resumen breve de la publicación, dos o tres líneas describiendo el contenido tratado. [Placeholder.]</p>
+        <span class="read">Leer más →</span>
+      </a>
+      <a href="#" class="article">
+        <div class="meta"><span>Conclusión</span><span>Jul. 2026</span></div>
+        <h3>Conclusiones de la reunión del ateneo [editar]</h3>
+        <p>Síntesis de lo debatido y acordado por el grupo en su última reunión de trabajo. [Placeholder.]</p>
+        <span class="read">Leer más →</span>
+      </a>
+      <a href="#" class="article">
+        <div class="meta"><span>Dictamen</span><span>Jun. 2026</span></div>
+        <h3>Dictamen sobre un caso territorial [editar]</h3>
+        <p>Análisis conjunto de un caso concreto desde la perspectiva jurídica y técnica. [Placeholder.]</p>
+        <span class="read">Leer más →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECURSOS / BIBLIOGRAFÍA ================= -->
+<section id="recursos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Para profundizar</span>
+        <h2>Recursos y bibliografía</h2>
+        <p>Contenidos, normativa y lecturas de referencia para el trabajo del ateneo.</p>
+      </div>
+    </div>
+
+    <div class="resources reveal">
+      <div class="res-col">
+        <h3>Bibliografía</h3>
+        <ul class="res-list">
+          <li>
+            <span class="tag mono">LIBRO</span>
+            <span>
+              <a href="#">Título de referencia [editar]</a>
+              <span class="author">Autor · Editorial, año</span>
+            </span>
+          </li>
+          <li>
+            <span class="tag mono">NORMA</span>
+            <span>
+              <a href="#">Normativa aplicable [editar]</a>
+              <span class="author">Ley / DNU / resolución</span>
+            </span>
+          </li>
+          <li>
+            <span class="tag mono">PAPER</span>
+            <span>
+              <a href="#">Publicación académica [editar]</a>
+              <span class="author">Autor · Revista, año</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="res-col">
+        <h3>Contenido de interés</h3>
+        <ul class="res-list">
+          <li>
+            <span class="tag mono">LINK</span>
+            <span>
+              <a href="#">Recurso externo de interés [editar]</a>
+              <span class="author">Descripción breve del recurso</span>
+            </span>
+          </li>
+          <li>
+            <span class="tag mono">LINK</span>
+            <span>
+              <a href="#">Recurso externo de interés [editar]</a>
+              <span class="author">Descripción breve del recurso</span>
+            </span>
+          </li>
+          <li>
+            <span class="tag mono">EVENTO</span>
+            <span>
+              <a href="#">Jornada o capacitación [editar]</a>
+              <span class="author">Fecha y lugar</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section id="contacto" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="contact-wrap">
+      <div class="contact-block reveal">
+        <span class="eyebrow">Escribinos</span>
+        <h2>Contacto</h2>
+        <p style="margin-top:16px; color:var(--ink-soft); max-width:40ch;">Para consultas, propuestas de colaboración o participación en el ateneo.</p>
+        <div class="coord-stamp">TRELEW, CHUBUT — PATAGONIA ARGENTINA</div>
+      </div>
+      <div class="contact-cards reveal">
+        <a class="contact-card" href="mailto:contacto@ateneojuridicoterritorial.ar">
+          <span><span class="label">Email</span><span class="value">contacto@ateneojuridicoterritorial.ar</span></span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="contact-card" href="https://wa.me/5492804000000" target="_blank" rel="noopener">
+          <span><span class="label">WhatsApp</span><span class="value">+54 9 280 400-0000</span></span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="#inicio" class="brand">
+      <img src="logo.jpg" alt="Ateneo Jurídico Territorial">
+      <span class="brand-text">ATENEO JURÍDICO TERRITORIAL</span>
+    </a>
+    <span class="footer-note">© 2026 ATENEOJURIDICOTERRITORIAL.AR — CHUBUT, PATAGONIA</span>
+  </div>
+</footer>
+
+<script>
+  // menú móvil
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
