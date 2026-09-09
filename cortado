@@ -1,0 +1,18 @@
+
+    <div class="pilares reveal">
+      <div class="pilar">
+        <span class="num mono">01 — DERECHO</span>
+        <h3>Abogados</h3>
+        <p>Asesoramiento y patrocinio en materia civil, contractual y territorial. </p>
+      </div>
+      <div class="pilar">
+        <span class="num mono">02 — NOTARIADO</span>
+        <h3>Escribanos</h3>
+        <p>Instrumentación pública, escrituración y seguridad jurídica de los actos.</p>
+      </div>
+      <div class="pilar">
+        <span class="num mono">03 — AGRIMENSURA</span>
+        <h3>Agrimensores</h3>
+        <p>Mensura, deslinde y relevamiento territorial con base técnica y catastral.</p>
+      </div>
+    </div>
