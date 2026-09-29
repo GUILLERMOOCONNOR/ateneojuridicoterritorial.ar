@@ -85,12 +85,12 @@
     pointer-events:none;
   }
 
-  /* ---------- Header ---------- */
+  /* ---------- Header (barra fija compacta) ---------- */
   header{
     position:sticky;
     top:0;
     z-index:50;
-    background:rgba(251,250,247,0.92);
+    background:rgba(251,250,247,0.96);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
   }
@@ -98,39 +98,40 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:16px 0;
+    padding:10px 0;
   }
   .brand{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
     text-decoration:none;
   }
-  .brand img{ width:36px; height:36px; object-fit:contain; }
+  .brand img{ width:32px; height:32px; object-fit:contain; }
   .brand-text{
     font-family:'Fraunces', serif;
-    font-size:15px;
+    font-size:14px;
     font-weight:600;
     color:var(--navy-deep);
     line-height:1.15;
+    white-space:nowrap;
   }
   .brand-text span{
     display:block;
     font-family:'IBM Plex Mono', monospace;
-    font-size:10px;
+    font-size:9.5px;
     font-weight:400;
     letter-spacing:0.12em;
     color:var(--ocre);
-    margin-top:2px;
+    margin-top:1px;
   }
-  nav.links{
+  ul.links{
     display:flex;
-    gap:32px;
+    gap:28px;
     list-style:none;
     margin:0;
     padding:0;
   }
-  nav.links a{
+  ul.links a{
     text-decoration:none;
     font-size:14px;
     font-weight:500;
@@ -138,7 +139,7 @@
     position:relative;
     padding-bottom:4px;
   }
-  nav.links a::after{
+  ul.links a::after{
     content:"";
     position:absolute;
     left:0; right:0; bottom:0;
@@ -148,27 +149,35 @@
     transform-origin:left;
     transition:transform .25s ease;
   }
-  nav.links a:hover::after{ transform:scaleX(1); }
+  ul.links a:hover::after{ transform:scaleX(1); }
   .nav-toggle{ display:none; }
 
+  /* que los anclas no queden tapados por la barra fija */
+  section[id]{ scroll-margin-top:60px; }
+
   @media(max-width:800px){
-    nav.links{
-      position:fixed;
-      top:69px; left:0; right:0;
+    .brand-text{ font-size:13px; }
+    .brand-text span{ display:none; }
+    ul.links{
+      position:absolute;
+      top:100%; left:0; right:0;
       background:var(--paper);
       flex-direction:column;
       gap:0;
-      border-bottom:1px solid var(--line);
       max-height:0;
       overflow:hidden;
       transition:max-height .3s ease;
     }
-    nav.links.open{ max-height:320px; }
-    nav.links a{
-      padding:16px 20px;
-      border-top:1px solid var(--line);
-      width:100%;
+    ul.links.open{
+      max-height:320px;
+      border-bottom:1px solid var(--line);
     }
+    ul.links a{
+      display:block;
+      padding:14px 20px;
+      border-top:1px solid var(--line);
+    }
+    ul.links a::after{ display:none; }
     .nav-toggle{
       display:flex;
       flex-direction:column;
@@ -639,7 +648,7 @@
   <div class="wrap nav">
     <a href="#inicio" class="brand">
       <img src="logo.jpg" alt="Ateneo Jurídico Territorial">
-      <span class="brand-text">ATENEO JURÍDICO<br>TERRITORIAL<span>CHUBUT · PATAGONIA</span></span>
+      <span class="brand-text">ATENEO JURÍDICO TERRITORIAL<span>CHUBUT · PATAGONIA</span></span>
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
